@@ -6,10 +6,12 @@ class MyLayananCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String desc;
+  final VoidCallback onTap;
   const MyLayananCard({
     required this.icon,
     required this.desc,
     required this.title,
+    required this.onTap,
   });
 
   @override
@@ -23,44 +25,48 @@ class _MyLayananCardState extends State<MyLayananCard> {
   Widget build(BuildContext context) {
     final screenWidth = context.width;
     return MouseRegion(
+      
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       cursor: SystemMouseCursors.click,
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        width: screenWidth > 1000 ? screenWidth * 0.25 : screenWidth * 0.85,
-        decoration: BoxDecoration(
-          color: isHovered ? secondaryColors : thirdColors,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            Icon(
-              widget.icon,
-              size: 50,
-              color: isHovered ? Colors.white : Colors.black,
-            ),
-            SizedBox(height: 10),
-            Text(
-              widget.title,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          width: screenWidth > 1000 ? screenWidth * 0.25 : screenWidth * 0.91,
+          decoration: BoxDecoration(
+            color: isHovered ? secondaryColors : thirdColors,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              Icon(
+                widget.icon,
+                size: 50,
                 color: isHovered ? Colors.white : Colors.black,
               ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              widget.desc,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: isHovered ? Colors.white : Colors.black,
+              SizedBox(height: 10),
+              Text(
+                widget.title,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: isHovered ? Colors.white : Colors.black,
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-          ],
+              SizedBox(height: 10),
+              Text(
+                widget.desc,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: isHovered ? Colors.white : Colors.black,
+                ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

@@ -11,7 +11,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-    if (kIsWeb) {
+  if (kIsWeb) {
     // Inisialisasi Firebase untuk Web
     await Firebase.initializeApp(
       options: FirebaseOptions(
@@ -25,8 +25,7 @@ Future<void> main() async {
   } else {
     // Inisialisasi Firebase untuk Android/iOS
     await Firebase.initializeApp(
-      name: "Pawpal",
-      options: const FirebaseOptions(
+      options: FirebaseOptions(
         apiKey: "AIzaSyABMmgpxjLqMkpg3NzTp93StJvgIyVxZRc",
         projectId: "pawpal-c3e29",
         storageBucket: "pawpal-c3e29.appspot.com",
@@ -35,7 +34,6 @@ Future<void> main() async {
       ),
     );
   }
-  
 
   runApp(MyApp());
 }
@@ -49,19 +47,23 @@ class MyApp extends StatelessWidget {
       stream: authC.streamAuthStatus,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            authC.navigateBasedOnAuthStatus(); // Pindahkan pemanggilan di sini
-          });
+          // Tentukan apakah pengguna sedang login
+          final isLoggedIn = snapshot.data != null;
+
+          // Tentukan apakah pengguna adalah admin
+          final isAdmin = isLoggedIn && authC.isAdmin.value;
+
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: "Application",
-            initialRoute: snapshot.data != null ? Routes.HOME : Routes.MAIN,
+            initialRoute: isLoggedIn
+                ? (isAdmin ? Routes.DASHBOARD_ADMIN : Routes.HOME)
+                : Routes.MAIN,
             getPages: AppPages.routes,
           );
         }
-        return LoadingView();
+        return LoadingView(); // Tampilkan loading jika stream belum siap
       },
     );
   }
 }
-

@@ -13,7 +13,16 @@ class LoginViewWeb extends GetView<LoginController> {
   void login() async {
     final authService = AuthController();
     authService.signInWithEmailPassword(
-        controller.emailC.text, controller.passC.text);
+      controller.emailC.text,
+      controller.passC.text,
+    );
+    if (controller.emailC.text == 'admin@gmail.com') {
+      // Arahkan ke halaman HOME jika aplikasi berjalan di web
+      Get.offAllNamed(Routes.DASHBOARD_ADMIN);
+    } else {
+      // Arahkan ke halaman MainPage jika aplikasi berjalan di perangkat mobile
+      Get.offAllNamed(Routes.HOME); // Ganti MainPage dengan widget utama
+    }
   }
 
   final authC = Get.find<AuthController>();
@@ -49,7 +58,7 @@ class LoginViewWeb extends GetView<LoginController> {
       height: context.width < 900 ? context.height * 0.4 : context.height * 0.6,
       width: context.height * 0.7,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: primaryColors,
         borderRadius: context.width > 900
             ? BorderRadius.only(
                 topLeft: Radius.circular(10),
@@ -119,21 +128,27 @@ class LoginViewWeb extends GetView<LoginController> {
               ),
             ),
             SizedBox(height: 20),
-            Text("Email:", style: TextStyle(fontSize: 18)),
             TextField(
               controller: controller.emailC,
               decoration: InputDecoration(
+                hintStyle: TextStyle(color: Colors.grey),
+                hintText: "Your Email",
+                prefixIcon: Icon(Icons.person_2),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Text("Password:", style: TextStyle(fontSize: 18)),
+            SizedBox(
+              height: 10,
+            ),
             TextField(
-              obscureText: true,
               controller: controller.passC,
+              obscureText: true,
               decoration: InputDecoration(
+                hintStyle: TextStyle(color: Colors.grey),
+                hintText: "Your Password",
+                prefixIcon: Icon(Icons.lock),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -145,7 +160,7 @@ class LoginViewWeb extends GetView<LoginController> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () => login(),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                style: ElevatedButton.styleFrom(backgroundColor: primaryColors),
                 child: Text(
                   "Login",
                   style: TextStyle(fontSize: 20, color: Colors.white),
@@ -157,7 +172,7 @@ class LoginViewWeb extends GetView<LoginController> {
                 onPressed: () => Get.toNamed(Routes.REGISTER),
                 child: Text(
                   "Don't have an account? Sign up",
-                  style: TextStyle(fontSize: 18, color: Colors.blue),
+                  style: TextStyle(fontSize: 18, color: secondaryColors),
                 ),
               ),
             )

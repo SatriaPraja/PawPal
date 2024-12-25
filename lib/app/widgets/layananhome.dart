@@ -31,6 +31,7 @@ class MyLayananMenu extends StatelessWidget {
             return MyLayananCardMenu(
               icon: icon[index],
               title: title[index],
+              
             );
           });
         }
@@ -47,7 +48,8 @@ class MyLayananMenu extends StatelessWidget {
           );
         } else {
           return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 50,
             children: buildCards(),
           );
         }

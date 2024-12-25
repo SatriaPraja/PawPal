@@ -8,4 +8,11 @@ class ShopController extends GetxController {
   void selectCategory(String category) {
     selectedCategory.value = category;
   }
+  
+  var isHovered = false.obs;
+
+  void onHover(bool hovering) {
+    isHovered.value = hovering;
+  }
+
 }

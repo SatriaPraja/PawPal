@@ -43,7 +43,7 @@ class RegisterViewWeb extends GetView<RegisterController> {
                 height: context.height * 0.6,
                 width: context.height * 0.7,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: primaryColors,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
@@ -109,15 +109,12 @@ class RegisterViewWeb extends GetView<RegisterController> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "Email:",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
                       TextField(
                         controller: controller.emailC,
                         decoration: InputDecoration(
+                          hintStyle: TextStyle(color: Colors.grey),
+                          hintText: "Your Email",
+                          prefixIcon: Icon(Icons.person_2),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -125,16 +122,14 @@ class RegisterViewWeb extends GetView<RegisterController> {
                       ),
                       SizedBox(
                         height: 10,
-                      ),
-                      Text(
-                        "Password:",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
                       ),
                       TextField(
                         controller: controller.passC,
+                        obscureText: true,
                         decoration: InputDecoration(
+                          hintStyle: TextStyle(color: Colors.grey),
+                          hintText: "Your Password",
+                          prefixIcon: Icon(Icons.lock),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -143,15 +138,13 @@ class RegisterViewWeb extends GetView<RegisterController> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        "Confirm Password:",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
                       TextField(
+                        obscureText: true,
                         controller: controller.confirmpassC,
                         decoration: InputDecoration(
+                          hintStyle: TextStyle(color: Colors.grey),
+                          hintText: "Confirm Password",
+                          prefixIcon: Icon(Icons.lock),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -166,7 +159,7 @@ class RegisterViewWeb extends GetView<RegisterController> {
                         child: ElevatedButton(
                           onPressed: () => register(),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: primaryColors,
                           ),
                           child: Text(
                             "Register",
@@ -184,7 +177,7 @@ class RegisterViewWeb extends GetView<RegisterController> {
                             "Have an account? login",
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.blue,
+                              color: secondaryColors,
                             ),
                           ),
                         ),

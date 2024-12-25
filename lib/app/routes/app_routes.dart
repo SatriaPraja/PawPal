@@ -13,7 +13,8 @@ abstract class Routes {
   static const SHOP = _Paths.SHOP;
   static const PROFILE = _Paths.PROFILE;
   static const MAIN = _Paths.MAIN;
-
+  static const DETAIL_LAYANAN = _Paths.DETAIL_LAYANAN;
+  static const DASHBOARD_ADMIN = _Paths.DASHBOARD_ADMIN;
 }
 
 abstract class _Paths {
@@ -28,4 +29,6 @@ abstract class _Paths {
   static const SHOP = '/shop';
   static const PROFILE = '/profile';
   static const MAIN = '/main';
+  static const DETAIL_LAYANAN = '/detail-layanan';
+  static const DASHBOARD_ADMIN = '/dashboard-admin';
 }

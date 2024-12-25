@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pawpal/app/routes/app_pages.dart';
 import 'package:pawpal/app/widgets/appbar.dart';
 import 'package:pawpal/app/widgets/layanan.dart';
 import 'package:pawpal/app/widgets/layanancard.dart';
@@ -29,19 +30,15 @@ class LayananView extends GetView<LayananController> {
   ];
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final ScreenWidth = MediaQuery.of(context).size.width;
+
+    final isSmallScreen = ScreenWidth < 1100;
     return Scaffold(
-      drawer: kIsWeb ? null : myDrawer(),
-      appBar: screenWidth > 1000 && kIsWeb
-          ? AppBar(
-              title: MyAppbar(),
-              automaticallyImplyLeading: !kIsWeb,
-              leading: kIsWeb ? null : null,
-            )
-          : AppBar(
-              title: Text("Layanan"),
-              centerTitle: true,
-            ),
+      appBar: AppBar(
+        title: MyAppbar(),
+        automaticallyImplyLeading: false,
+      ),
+      drawer: isSmallScreen ? myDrawer() : null,
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -121,6 +118,14 @@ class LayananView extends GetView<LayananController> {
                           icon: icon[index],
                           title: title[index],
                           desc: desc[index],
+                          onTap: () {
+                            Get.offNamed(
+                              Routes.DETAIL_LAYANAN,
+                              parameters: {
+                                'title': title[index],
+                              },
+                            );
+                          },
                         );
                       });
                     }

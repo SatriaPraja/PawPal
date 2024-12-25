@@ -9,6 +9,7 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   RxBool isLoggedIn = false.obs;
   var isLoading = false.obs;
+  RxBool isAdmin = false.obs;
 
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
   Future<UserCredential> signInWithEmailPassword(String email, password) async {
@@ -20,13 +21,12 @@ class AuthController extends GetxController {
       );
       isLoading.value = false;
       isLoggedIn.value = true;
-      if (kIsWeb) {
-        // Arahkan ke halaman HOME jika aplikasi berjalan di web
-        Get.offAllNamed(Routes.HOME);
+      if (email == 'admin@gmail.com') {
+        isAdmin.value = true;
       } else {
-        // Arahkan ke halaman MainPage jika aplikasi berjalan di perangkat mobile
-        Get.offAll(() => MainPage()); // Ganti MainPage dengan widget utama
+        isAdmin.value = false;
       }
+      
       return userCredential;
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);
@@ -106,7 +106,7 @@ class AuthController extends GetxController {
   void logout() async {
     await FirebaseAuth.instance.signOut();
 
-    Get.offAllNamed(Routes.LOGIN);
+    Get.offAllNamed(Routes.HOME);
   }
 
   // void signup(String email, String pass) async {

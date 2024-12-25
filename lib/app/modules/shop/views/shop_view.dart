@@ -22,7 +22,7 @@ class ShopView extends GetView<ShopController> {
   Widget build(BuildContext context) {
     final screenWidth = context.width;
     return Scaffold(
-      drawer: kIsWeb ? null : myDrawer(),
+
       appBar: screenWidth > 1000 && kIsWeb
           ? AppBar(
               title: MyAppbar(),
@@ -89,7 +89,7 @@ class ShopView extends GetView<ShopController> {
                   horizontal: context.width * 0.05, vertical: 20),
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: MyShop(),
+                child: MyShopMenu(),
               ),
             ),
           ],

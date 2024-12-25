@@ -13,9 +13,6 @@ class MyTentangWeb extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 30,
-          ),
-          SizedBox(
             height: 20,
           ),
           Row(
@@ -104,9 +101,6 @@ class MyTentangApp extends StatelessWidget {
       width: context.width,
       child: Stack(
         children: [
-          SizedBox(
-            height: 20,
-          ),
           Container(
             width: context.width,
             child: Column(

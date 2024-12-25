@@ -169,44 +169,39 @@ class _ImageSliderAppState extends State<ImageSliderApp> {
   Timer? _timer;
 
   @override
-  void initState() {
-    super.initState();
-    _startAutoSlide();
-  }
-
-  @override
   void dispose() {
     _timer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
 
-  void _startAutoSlide() {
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
-      _currentPage++;
-      if (_currentPage >= images.length) {
-        _currentPage = 0;
-        _pageController.animateToPage(
-          _currentPage,
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      } else {
-        _pageController.animateToPage(
-          _currentPage,
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
+  void _nextPage() {
+    if (_currentPage < images.length - 1) {
+      _pageController.animateToPage(
+        _currentPage + 1,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  void _previousPage() {
+    if (_currentPage > 0) {
+      _pageController.animateToPage(
+        _currentPage - 1,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = Get.width;
     return Column(
       children: [
         Container(
-          height: context.height * 0.25,
+          height: screenWidth > 1100 ? Get.height * 0.7 : Get.height * 0.35,
           margin: EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -237,6 +232,20 @@ class _ImageSliderAppState extends State<ImageSliderApp> {
                       width: double.infinity,
                     );
                   },
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                    onPressed: _previousPage,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
+                    onPressed: _nextPage,
+                  ),
                 ),
                 Positioned(
                   bottom: 20,

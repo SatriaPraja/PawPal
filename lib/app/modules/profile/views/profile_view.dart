@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pawpal/app/controllers/auth_controller.dart';
+import 'package:pawpal/app/routes/app_pages.dart';
 import 'package:pawpal/app/widgets/appbar.dart';
 import 'package:pawpal/app/widgets/part/drawer.dart';
 import 'package:pawpal/theme.dart';
@@ -11,22 +13,20 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileController profilC = Get.put(ProfileController());
+  AuthController authC = AuthController();
   @override
   Widget build(BuildContext context) {
-    final screenWidth = context.width;
+    final ScreenWidth = MediaQuery.of(context).size.width;
+
+    // Kondisi apakah lebar layar kurang dari 1100
+    final isSmallScreen = ScreenWidth < 1100;
     return Scaffold(
-        drawer: kIsWeb ? null : myDrawer(),
-        appBar: screenWidth > 1000 && kIsWeb
-            ? AppBar(
-                title: MyAppbar(),
-                automaticallyImplyLeading: !kIsWeb,
-                leading: kIsWeb ? null : null,
-              )
-            : AppBar(
-                title: Text("Profile"),
-                centerTitle: true,
-                backgroundColor: Colors.white,
-              ),
+        appBar: AppBar(
+          title: MyAppbar(),
+          automaticallyImplyLeading: false,
+        
+        ),
+        drawer: isSmallScreen ? myDrawer() : null,
         body: SingleChildScrollView(
           child: Container(
             child: Column(
@@ -36,7 +36,7 @@ class ProfileView extends GetView<ProfileController> {
                 Align(
                   alignment: Alignment.center,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/profile.jpg"), 
+                    backgroundImage: AssetImage("assets/images/profile.jpg"),
                     radius: 50,
                     backgroundColor: Colors.grey,
                   ),
@@ -250,10 +250,13 @@ class ProfileView extends GetView<ProfileController> {
                           SizedBox(
                             width: 20,
                           ),
-                          Text(
-                            "Logout",
-                            style: TextStyle(
-                              fontSize: 16,
+                          GestureDetector(
+                            onTap: () => Get.find<AuthController>().logout(),
+                            child: Text(
+                              "Logout",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ],

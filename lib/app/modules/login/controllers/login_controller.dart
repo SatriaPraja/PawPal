@@ -3,19 +3,17 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   // Controller untuk input email dan password
-  TextEditingController emailC =
-      TextEditingController(text: "blitzxyzz@gmail.com");
-  TextEditingController passC = TextEditingController(text: "123123");
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passC = TextEditingController();
 
   // FocusNode untuk menangani interaksi dengan keyboard
-
 
   // Obscure text untuk mengontrol apakah password disembunyikan atau tidak
   var isPasswordObscured = true.obs;
 
   @override
   void onInit() {
-    super.onInit();// Inisialisasi FocusNode untuk password
+    super.onInit(); // Inisialisasi FocusNode untuk password
   }
 
   @override

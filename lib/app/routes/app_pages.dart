@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:get/get.dart';
-import 'package:pawpal/app/widgets/splash.dart';
-import 'package:pawpal/mainpage.dart';
 
+import '../../mainpage.dart';
+import '../modules/Dashboard_Admin/bindings/dashboard_admin_binding.dart';
+import '../modules/Dashboard_Admin/views/dashboard_admin_view.dart';
+import '../modules/DetailLayanan/bindings/detail_layanan_binding.dart';
+import '../modules/DetailLayanan/views/detail_layanan_view.dart';
 import '../modules/galeri/bindings/galeri_binding.dart';
 import '../modules/galeri/views/galeri_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -22,6 +25,7 @@ import '../modules/shop/bindings/shop_binding.dart';
 import '../modules/shop/views/shop_view.dart';
 import '../modules/tentang/bindings/tentang_binding.dart';
 import '../modules/tentang/views/tentang_view.dart';
+import '../widgets/splash.dart';
 
 part 'app_routes.dart';
 
@@ -81,6 +85,19 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_LAYANAN,
+      page: () => DetailLayananView(
+        title: Get.parameters['title'] ?? 'Detail',
+        description: Get.parameters['desc'] ?? 'Description not available',
+      ),
+      binding: DetailLayananBinding(),
+    ),
+    GetPage(
+      name: _Paths.DASHBOARD_ADMIN,
+      page: () => const DashboardAdminView(),
+      binding: DashboardAdminBinding(),
     ),
   ];
 }
