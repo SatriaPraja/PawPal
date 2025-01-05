@@ -8,6 +8,7 @@ class MyCopyright extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 30),
       decoration: BoxDecoration(
         color: primaryColors,
       ),

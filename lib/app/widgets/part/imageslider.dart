@@ -280,7 +280,7 @@ class _ImageSliderAppState extends State<ImageSliderApp> {
           ),
         ),
         SizedBox(
-          height: 30,
+          height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

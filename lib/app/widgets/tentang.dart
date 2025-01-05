@@ -13,7 +13,7 @@ class MyTentangWeb extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 20,
+            height: 40,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -35,9 +35,7 @@ class MyTentangWeb extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      context.width > 900
-                          ? "Kami memahami betapa pentingnya hewan peliharaan bagi Anda. Oleh karena itu, kami menawarkan layanan penitipan hewan yang profesional dan penuh kasih sayang. Tim kami berdedikasi untuk memberikan perawatan terbaik, sehingga Anda bisa merasa tenang soat meninggalkan hewan kesayangan Anda bersama kami"
-                          : "hehe",
+                      "Kami memahami betapa pentingnya hewan peliharaan bagi Anda. Oleh karena itu, kami menawarkan layanan penitipan hewan yang profesional dan penuh kasih sayang. Tim kami berdedikasi untuk memberikan perawatan terbaik, sehingga Anda bisa merasa tenang soat meninggalkan hewan kesayangan Anda bersama kami",
                       style: TextStyle(
                         fontSize: 16,
                       ),

@@ -7,6 +7,12 @@ import '../modules/Dashboard_Admin/bindings/dashboard_admin_binding.dart';
 import '../modules/Dashboard_Admin/views/dashboard_admin_view.dart';
 import '../modules/DetailLayanan/bindings/detail_layanan_binding.dart';
 import '../modules/DetailLayanan/views/detail_layanan_view.dart';
+import '../modules/admin_layanan/bindings/admin_layanan_binding.dart';
+import '../modules/admin_layanan/views/admin_layanan_view.dart';
+import '../modules/admin_report/bindings/admin_report_binding.dart';
+import '../modules/admin_report/views/admin_report_view.dart';
+import '../modules/admin_transaksi/bindings/admin_transaksi_binding.dart';
+import '../modules/admin_transaksi/views/admin_transaksi_view.dart';
 import '../modules/galeri/bindings/galeri_binding.dart';
 import '../modules/galeri/views/galeri_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -17,6 +23,8 @@ import '../modules/layanan/bindings/layanan_binding.dart';
 import '../modules/layanan/views/layanan_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/mylayanan/bindings/mylayanan_binding.dart';
+import '../modules/mylayanan/views/mylayanan_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -96,8 +104,28 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DASHBOARD_ADMIN,
-      page: () => const DashboardAdminView(),
+      page: () => DashboardAdminView(),
       binding: DashboardAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_LAYANAN,
+      page: () => AdminLayananView(),
+      binding: AdminLayananBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_REPORT,
+      page: () => AdminReportView(),
+      binding: AdminReportBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_TRANSAKSI,
+      page: () => const AdminTransaksiView(),
+      binding: AdminTransaksiBinding(),
+    ),
+    GetPage(
+      name: _Paths.MYLAYANAN,
+      page: () => const MylayananView(),
+      binding: MylayananBinding(),
     ),
   ];
 }

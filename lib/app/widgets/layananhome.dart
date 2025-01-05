@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pawpal/app/routes/app_pages.dart';
 import 'package:pawpal/app/widgets/layanancard.dart';
 
 class MyLayananMenu extends StatelessWidget {
   final List<IconData> icon = [
-    Icons.monitor_heart_rounded,
-    Icons.remove_red_eye_sharp,
-    Icons.shield,
+    Icons.pets,
+    Icons.medical_services,
+    Icons.bed,
   ];
   final List<String> title = [
-    'Perawatan Harian',
-    'Pengawasan Khusus',
-    'Kesehatan dan Kebersihan',
+    'Perawatan Hewan',
+    'Konsultasi dan Vaksinasi',
+    'Penitipan Hewan',
   ];
+
   final List<String> desc = [
-    'Kami menyediakan layanan perawatan harian yang memastikan hewan peliharaan Anda mendapatkan perhatian dan aktivitas yang mereka butuhkan untuk kebahagiaan dan kesejahteraan mereka.',
-    'Kami menyediakan layanan pengawasan khusus untuk hewan peliharaan yang memerlukan perhatian ekstra. Staf berpengalaman kami memberikan perawatan tepat, termasuk obat-obatan jika diperlukan.',
-    'Kesehatan dan kebersihan hewan peliharaan Anda adalah prioritas kami. Kami menyediakan makanan bergizi, pemeriksaan kesehatan rutin, dan lingkungan bersih untuk menjaga kesehatan dan kebahagiaan mereka.',
+    'Layanan perawatan harian kami memastikan hewan peliharaan Anda mendapatkan perhatian penuh, aktivitas yang bermanfaat, serta perawatan yang mendukung kebahagiaan dan kesejahteraan mereka.',
+    'Kami menyediakan layanan konsultasi dan vaksinasi dengan pengawasan khusus untuk hewan peliharaan yang memerlukan perhatian ekstra, termasuk pemberian obat sesuai kebutuhan.',
+    'Kami memberikan layanan penitipan hewan dengan memastikan kebersihan, kesehatan, dan makanan bergizi. Hewan peliharaan Anda akan mendapatkan perawatan penuh selama penitipan.',
   ];
 
   @override
@@ -31,7 +33,14 @@ class MyLayananMenu extends StatelessWidget {
             return MyLayananCardMenu(
               icon: icon[index],
               title: title[index],
-              
+              ontap: () {
+                Get.toNamed(
+                  Routes.DETAIL_LAYANAN,
+                  parameters: {
+                    'title': title[index],
+                  },
+                );
+              },
             );
           });
         }

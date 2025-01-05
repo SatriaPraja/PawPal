@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -16,13 +17,14 @@ class LoginViewWeb extends GetView<LoginController> {
       controller.emailC.text,
       controller.passC.text,
     );
-    if (controller.emailC.text == 'admin@gmail.com') {
-      // Arahkan ke halaman HOME jika aplikasi berjalan di web
-      Get.offAllNamed(Routes.DASHBOARD_ADMIN);
-    } else {
-      // Arahkan ke halaman MainPage jika aplikasi berjalan di perangkat mobile
-      Get.offAllNamed(Routes.HOME); // Ganti MainPage dengan widget utama
-    }
+    // final userUid =
+    //     authService.userUid; // Pastikan ini adalah UID pengguna yang benar
+    // await FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(userUid)
+    //     .update({'isActive': true});
+
+    print(authService.isLoggedIn.value);
   }
 
   final authC = Get.find<AuthController>();
@@ -30,25 +32,27 @@ class LoginViewWeb extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          context.width < 900
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    buildWelcomeContainer(context),
-                    buildLoginContainer(context),
-                  ],
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    buildWelcomeContainer(context),
-                    buildLoginContainer(context),
-                  ],
-                ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            context.width < 900
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      buildWelcomeContainer(context),
+                      buildLoginContainer(context),
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      buildWelcomeContainer(context),
+                      buildLoginContainer(context),
+                    ],
+                  ),
+          ],
+        ),
       ),
     );
   }
@@ -277,34 +281,41 @@ class LoginViewApp extends GetView<LoginController> {
                   ),
                   Container(
                     width: context.width * 0.9,
-                    child: TextField(
-                      obscureText: true,
-                      controller: controller.passC,
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(color: Colors.white),
-                        hintText: " Password",
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Colors.white,
-                        ),
-                        suffixIcon: GestureDetector(
-                          child: Icon(
-                            controller.isPasswordObscured.value
-                                ? Icons.remove_red_eye_sharp
-                                : Icons.visibility_off,
+                    child: Obx(
+                      () => TextField(
+                        obscureText: controller.isPasswordObscured.value,
+                        controller: controller.passC,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintStyle: TextStyle(color: Colors.white),
+                          hintText: "Password",
+                          prefixIcon: Icon(
+                            Icons.lock,
                             color: Colors.white,
                           ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1.0,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              // Toggle nilai isPasswordObscured
+                              controller.isPasswordObscured.value =
+                                  !controller.isPasswordObscured.value;
+                            },
+                            child: Icon(
+                              controller.isPasswordObscured.value
+                                  ? Icons.visibility_off
+                                  : Icons.remove_red_eye_sharp,
+                              color: Colors.white,
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
                       ),
                     ),

@@ -8,9 +8,8 @@ class HomeController extends GetxController {
   // Fungsi untuk mengubah index dan menavigasi halaman
   void changeIndex(int index) {
     currentIndex.value = index; // Update index untuk tampilan
-     // Panggil fungsi navigasi
+    // Panggil fungsi navigasi
   }
 
   // Fungsi navigasi berdasarkan index
-  
 }

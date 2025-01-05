@@ -35,11 +35,11 @@ class DetailLayananView extends GetView<DetailLayananController> {
               SizedBox(
                 height: 20,
               ),
-              if (title == 'Perawatan Harian')
+              if (title == 'Perawatan Hewan')
                 CardDetail1()
-              else if (title == 'Pengawasan Khusus')
+              else if (title == 'Konsultasi dan Vaksinasi')
                 CardDetail2()
-              else if (title == 'Kesehatan dan Kebersihan')
+              else if (title == 'Penitipan Hewan')
                 CardDetail3()
               else
                 Text('DETAIL NOT FOUND'),

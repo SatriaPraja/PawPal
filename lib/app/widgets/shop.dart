@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pawpal/app/controllers/auth_controller.dart';
 import 'package:pawpal/app/modules/shop/controllers/shop_controller.dart';
 import 'package:pawpal/app/routes/app_pages.dart';
+import 'package:pawpal/app/widgets/copyright.dart';
 import 'package:pawpal/app/widgets/shopcard.dart';
 import 'package:pawpal/theme.dart';
 
@@ -19,7 +20,7 @@ class MyShop extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-        MyShopMenu()
+        MyShopMenu(),
       ],
     );
   }
@@ -49,7 +50,8 @@ class ShopTitle extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Get.toNamed(Routes.SHOP),
+                    // onPressed: () => Get.toNamed(Routes.SHOP),
+                    onPressed: () {},
                     child: Text(
                       "Lainnya > ",
                       style: TextStyle(
@@ -83,7 +85,6 @@ class MyShopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Obx(() {
       String selectedCategory = shopController.selectedCategory.value;
       List<MyShopCard> filteredCards = [];
@@ -144,6 +145,3 @@ class MyShopMenu extends StatelessWidget {
     });
   }
 }
-
-
-

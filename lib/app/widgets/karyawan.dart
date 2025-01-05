@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pawpal/app/widgets/copyright.dart';
 import 'package:pawpal/app/widgets/karyawancard.dart';
 import 'package:pawpal/theme.dart';
 
@@ -20,6 +21,10 @@ class MyKaryawan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenWidth = MediaQuery.of(context).size.width;
+
+    // Kondisi apakah lebar layar kurang dari 1100
+    final isSmallScreen = ScreenWidth < 1100;
     return Container(
       child: Column(
         children: [
@@ -70,9 +75,9 @@ class MyKaryawan extends StatelessWidget {
                     "Bukan hanya sekadar pelayanan biasa, kami menjadikan keamanan dan kesejahteraan hewan kesayangan Anda sebagai prioritas utama. Kami selalu berupaya menciptakan lingkungan yang nyaman dan aman, sehingga Anda bisa merasa tenang saat mereka berada dalam perawatan kami.",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: kIsWeb ? 20 : 16,
+                      fontSize: !isSmallScreen ? 16 : 14,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ],
@@ -126,6 +131,7 @@ class MyKaryawan extends StatelessWidget {
               }
             },
           ),
+          
         ],
       ),
     );

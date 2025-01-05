@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pawpal/app/controllers/auth_controller.dart';
+import 'package:pawpal/app/widgets/copyright.dart';
 import 'package:pawpal/app/widgets/galericard.dart';
 import 'package:pawpal/theme.dart';
 
@@ -44,6 +45,8 @@ class MyGaleri extends StatelessWidget {
     final List<Color> typeColors = type.map((type) {
       return type == 'Kucing' ? Colors.yellow : Colors.red;
     }).toList();
+    final ScreenWidth = MediaQuery.of(context).size.width;
+    final isSmallScreen = ScreenWidth < 1100;
     return Container(
       child: Column(
         children: [
@@ -95,9 +98,9 @@ class MyGaleri extends StatelessWidget {
                     "Mari rasakan momen-momen penuh cinta bersama PawPal. Lihat bagaimana kami menciptakan kebahagiaan bagi hewan kesayangan Anda, di mana mereka akan merasa dicintai, dirawat, dan senang berada di sekitar kami. Saksikan sendiri kehangatan yang kami berikan di setiap momen perawatan mereka bersama PawPal.",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: kIsWeb ? 20 : 16,
+                      fontSize: !isSmallScreen ? 16 : 14,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ],
@@ -153,9 +156,6 @@ class MyGaleri extends StatelessWidget {
                 );
               }
             },
-          ),
-          SizedBox(
-            height: 50,
           ),
         ],
       ),

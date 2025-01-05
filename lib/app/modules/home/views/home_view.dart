@@ -27,25 +27,24 @@ class HomeView extends GetView<HomeController> {
     // Kondisi apakah lebar layar kurang dari 1100
     final isSmallScreen = ScreenWidth < 1100;
     return Scaffold(
+      // appBar: MyAppbar()
+      // ),
       appBar: AppBar(
         title: MyAppbar(),
-        // Menonaktifkan drawer di AppBar jika tidak diperlukan untuk layar besar
-        automaticallyImplyLeading:
-            false, // Membuat tombol drawer di AppBar hanya muncul pada layar kecil
+        automaticallyImplyLeading: false,
       ),
+
       drawer: isSmallScreen ? myDrawer() : null,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final screenWidth = constraints.maxWidth;
           return CustomScrollView(
             slivers: [
               SliverPersistentHeader(
                 delegate: MyDelegateClass(),
               ),
               SliverList(
-                delegate: SliverChildListDelegate([
-                  !isSmallScreen ? MyTentangWeb() : MyTentangApp(),
-                ]),
+                delegate: SliverChildListDelegate(
+                    [kIsWeb ? MyTentangWeb() : MyTentangApp()]),
               ),
               SliverList(
                 delegate: SliverChildListDelegate([MyShop()]),
@@ -66,6 +65,35 @@ class HomeView extends GetView<HomeController> {
           );
         },
       ),
+      // bottomNavigationBar:  Obx(
+      //   () => BottomNavigationBar(
+      //     backgroundColor: thirdColors,
+      //     type: BottomNavigationBarType.fixed,
+      //     currentIndex: controller.currentIndex.value,
+      //     onTap: (index) => controller.changeIndex(index),
+      //     showUnselectedLabels: true,
+      //     selectedItemColor: Colors.black,
+      //     unselectedItemColor: Colors.grey,
+      //     items: [
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.home_outlined),
+      //         label: "Home",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.shopping_cart_outlined),
+      //         label: "Shop",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.favorite_border),
+      //         label: "Layanan",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.person_4_outlined),
+      //         label: "Profile",
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

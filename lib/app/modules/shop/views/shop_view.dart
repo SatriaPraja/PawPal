@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pawpal/app/modules/shop/controllers/shop_controller.dart';
 import 'package:pawpal/app/widgets/appbar.dart';
+import 'package:pawpal/app/widgets/copyright.dart';
 import 'package:pawpal/app/widgets/part/drawer.dart';
 import 'package:pawpal/app/widgets/shop.dart';
 import 'package:pawpal/app/widgets/shopcard.dart';
@@ -20,20 +21,16 @@ class ShopView extends GetView<ShopController> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = context.width;
-    return Scaffold(
+    final ScreenWidth = MediaQuery.of(context).size.width;
 
-      appBar: screenWidth > 1000 && kIsWeb
-          ? AppBar(
-              title: MyAppbar(),
-              automaticallyImplyLeading: !kIsWeb,
-              leading: kIsWeb ? null : null,
-            )
-          : AppBar(
-              title: Text("Shop"),
-              centerTitle: true,
-              backgroundColor: Colors.white,
-            ),
+    // Kondisi apakah lebar layar kurang dari 1100
+    final isSmallScreen = ScreenWidth < 1100;
+    return Scaffold(
+      appBar: AppBar(
+        title: MyAppbar(),
+        automaticallyImplyLeading: false,
+      ),
+      drawer: isSmallScreen ? myDrawer() : null,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -92,6 +89,10 @@ class ShopView extends GetView<ShopController> {
                 child: MyShopMenu(),
               ),
             ),
+            SizedBox(
+              height: 100,
+            ),
+            MyCopyright(),
           ],
         ),
       ),

@@ -10,6 +10,11 @@ class MyLayanan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenWidth = MediaQuery.of(context).size.width;
+
+    // Kondisi apakah lebar layar kurang dari 1100
+    final isSmallScreen = ScreenWidth < 1100;
+
     return Container(
       width: context.width,
       child: Column(
@@ -62,9 +67,9 @@ class MyLayanan extends StatelessWidget {
                     "Setiap tindakan yang kami lakukan, kami lakukan dengan penuh kasih sayang dan perhatian terhadap setiap hewan kesayangan Anda. Kami memahami betapa berharganya mereka dalam hidup Anda, dan itulah mengapa kami memastikan semua layanan kami didasarkan pada empati dan dedikasi untuk kebutuhan mereka.",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: kIsWeb ? 20 : 16,
+                      fontSize: !isSmallScreen ? 16 : 14,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.justify,
                   ),
                 ),
               ],

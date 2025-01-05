@@ -15,6 +15,10 @@ abstract class Routes {
   static const MAIN = _Paths.MAIN;
   static const DETAIL_LAYANAN = _Paths.DETAIL_LAYANAN;
   static const DASHBOARD_ADMIN = _Paths.DASHBOARD_ADMIN;
+  static const ADMIN_LAYANAN = _Paths.ADMIN_LAYANAN;
+  static const ADMIN_REPORT = _Paths.ADMIN_REPORT;
+  static const ADMIN_TRANSAKSI = _Paths.ADMIN_TRANSAKSI;
+  static const MYLAYANAN = _Paths.MYLAYANAN;
 }
 
 abstract class _Paths {
@@ -31,4 +35,8 @@ abstract class _Paths {
   static const MAIN = '/main';
   static const DETAIL_LAYANAN = '/detail-layanan';
   static const DASHBOARD_ADMIN = '/dashboard-admin';
+  static const ADMIN_LAYANAN = '/admin-layanan';
+  static const ADMIN_REPORT = '/admin-report';
+  static const ADMIN_TRANSAKSI = '/admin-transaksi';
+  static const MYLAYANAN = '/mylayanan';
 }
